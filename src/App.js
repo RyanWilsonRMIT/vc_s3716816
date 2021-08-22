@@ -1,23 +1,35 @@
 import logo from './logo.svg';
+import Header from './components/partials/header.js'
+import Footer from './components/partials/footer.js'
+import Home from './components/home.js'
+import LoginRegister from './components/loginRegister.js'
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="d-flex flex-column min-vh-100">
+      <Router>
+        <Header/>
+        <main>
+          <div className="container my-3">
+          <Switch>
+                {/* NOTE: The technique below is to pass down the history property to the Login component. */}
+                <Route path="/login" render={props => (
+                  <LoginRegister {...props} selected={'login'} />
+                )} />
+                <Route path="/register" render={props => (
+                  <LoginRegister {...props} selected={'register'} />
+                )} />
+                <Route path="/">
+                  <Home username={"Ryan"}
+                   />
+                </Route>
+              </Switch>
+          </div>
+        </main>
+        <Footer />
+      </Router>
     </div>
   );
 }
