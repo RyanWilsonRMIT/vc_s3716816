@@ -1,0 +1,23 @@
+.searchbar{
+    border: 3px solid rgb(160, 136, 2);
+    color:rgb(160, 136, 2);
+    border-radius:25px;
+    height:40px;
+    padding:5px;
+    display:inline;
+}
+.searchbar.active{
+    border: 3px solid gold;
+    color:gold;
+}
+.searchbar input{
+    border:none;
+    width:350px;
+    background-color:black;
+    color:rgb(160, 136, 2);
+}
+.searchbar input:focus-visible{
+    border:none;
+    outline:none;
+    color:gold;
+}

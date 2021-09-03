@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import Header from './components/partials/header.js'
 import Footer from './components/partials/footer.js'
 import Home from './components/home.js'
@@ -8,11 +7,11 @@ import './App.css';
 
 function App() {
   return (
-    <div className="d-flex flex-column min-vh-100">
+    <div>
       <Router>
         <Header/>
         <main>
-          <div className="container my-3">
+          <div className="page">
           <Switch>
                 {/* NOTE: The technique below is to pass down the history property to the Login component. */}
                 <Route path="/login" render={props => (

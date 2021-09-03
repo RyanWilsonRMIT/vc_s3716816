@@ -1,9 +1,15 @@
 import React from "react";
+import "./styles/footer.css";
 
 class Footer extends React.Component {
   render() {
     return (
-      <p>footer</p>
+      <div className="footer">
+        <div>
+          Copyright Ryan Wilson 2021
+        </div>
+        
+      </div>
     );
   }
 }
