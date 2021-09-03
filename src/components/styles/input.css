@@ -8,3 +8,12 @@
   outline:none;
   border-bottom-color: gold;
 }
+.correct{
+  border-bottom-color:green;
+}
+.incorrect{
+  border-bottom-color:red;
+}
+.errormsg{
+  color:red;
+}
