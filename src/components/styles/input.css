@@ -1,0 +1,10 @@
+.input{
+  text-align:center;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+.input:focus-visible{
+  outline:none;
+  border-bottom-color: gold;
+}

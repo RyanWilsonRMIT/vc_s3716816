@@ -1,0 +1,30 @@
+.loginRegister{
+text-align:center;
+}
+.loginRegister .toggleSwitch{
+
+}
+.login input, .register input{
+  display:block;
+  margin: auto;
+}
+.loginRegister .toggleSwitch .toggle{
+  border-color:gold;
+  font-size:30px;
+  width:140px;
+  color:gold;
+  transition-duration:.2s;
+}
+.loginRegister .toggleSwitch .toggle:first-child{
+  border-radius: 25px 0px 0px 25px;
+  border-right: none;
+}
+.loginRegister .toggleSwitch .toggle:last-child{
+  border-radius: 0px 25px 25px 0px;
+}
+.loginRegister button.selected{
+  background-color:black;
+}
+.loginRegister button{
+  background-color:white;
+}
