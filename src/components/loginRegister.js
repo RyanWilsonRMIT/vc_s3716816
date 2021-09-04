@@ -20,7 +20,6 @@ class LoginRegister extends React.Component {
     this.setState({selected:"register"})
   }
   login = (data) =>{
-    console.log("Login Attmepted!")
     let accounts = [];
     if (localStorage.getItem("accounts")!=null){
       accounts = JSON.parse(localStorage.getItem("accounts"));
@@ -39,7 +38,6 @@ class LoginRegister extends React.Component {
     this.setState({"errormsg":"Login Failed"});
   }
   register = (data) =>{
-    console.log("Register Attmepted!")
     let accounts = [];
     if (localStorage.getItem("accounts")!=null){
       accounts = JSON.parse(localStorage.getItem("accounts"));
@@ -51,7 +49,6 @@ class LoginRegister extends React.Component {
     }
     accounts.push(newAccount)
     localStorage.setItem("accounts",JSON.stringify(accounts))
-    console.log("account saved")
 
 
   }
@@ -75,13 +72,13 @@ class LoginRegister extends React.Component {
         msg: "Your password must have at least 1 number",
       },
       {
-        rule: new RegExp(/[-!$%^&*()_+|~=`{}\[\]:";'<>?,@#.\/]/),
+        rule: new RegExp(/[-!$%^&*()_+|~=`{}[\]:";'<>?,@#./]/),
         msg: "Your password must have at least 1 symbol",
       },
     ]
     let emailValidation = [
       {
-        rule:new RegExp(/^[a-zA-Z][a-zA-Z0-9\.]*@[a-zA-Z]*\.([\.a-zA-Z]*)*[a-zA-Z]$/),
+        rule:new RegExp(/^[a-zA-Z][a-zA-Z0-9.]*@[a-zA-Z]*\.([.a-zA-Z]*)*[a-zA-Z]$/),
         msg:"Please enter a valid email address",
       },
     ]

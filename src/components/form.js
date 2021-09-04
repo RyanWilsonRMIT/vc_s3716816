@@ -9,12 +9,9 @@ class Form extends React.Component {
     }
   }
   ChangeMade = (data) =>{
-    console.log("valid Change Made");
-    console.log(data);
     let datas = this.state.datas;
     datas[data.id]=data.data;
     this.setState(datas)
-    console.log(this.state.datas)
   }
   componentDidMount(){
     let inputs=[];
@@ -47,7 +44,7 @@ class Form extends React.Component {
         type=null;
       }
       datas[id]=null;
-      inputs.push(<Input label={label} id = {id} validation={validation} type={type} onValidChange={this.ChangeMade}></Input>)
+      inputs.push(<Input key={a} label={label} id = {id} validation={validation} type={type} onValidChange={this.ChangeMade}></Input>)
     }
     this.setState({inputs,datas})
   }
@@ -64,12 +61,11 @@ class Form extends React.Component {
       this.props.submit(datas);
     }
     else{
-      console.log("You failed")
+
     }
   }
 
   render() {
-    console.log(this.inputs);
     return (
       <div className="form">
         {this.state.inputs}

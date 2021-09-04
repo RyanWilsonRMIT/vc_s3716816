@@ -14,7 +14,7 @@ class Input extends React.Component {
     }
   }
   componentDidMount(){
-    let validation, errmsg, type;
+    let validation, type;
     if (this.props.validation){
       validation= this.props.validation;
     }
@@ -51,14 +51,10 @@ class Input extends React.Component {
     //does e.target.data match the validation in this.state.validation
     let validation = this.state.validation;
     let data = e.target.value;
-    console.log(data)
     let errors=[]
     let correct=true
-    console.log(validation);
     for (var v in validation){
-      console.log("Checking rule: " + validation[v].msg)
       if (!data.match(validation[v].rule)){
-        console.log("failed");
         correct=false;
         errors.push(validation[v].msg)
       }
