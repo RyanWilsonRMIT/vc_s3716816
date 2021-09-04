@@ -4,6 +4,7 @@ import logo from "./logo.png";
 import "./styles/header.css";
 class Header extends React.Component {
   render() {
+    let username = localStorage.getItem("username");
     return (
       <div className="header">
         <div>
@@ -11,8 +12,17 @@ class Header extends React.Component {
             <img src={logo} alt="Vibe Check"></img>
           </a>
           <Searchbar></Searchbar>
-          <a href="/login">Log In</a>
-          <a href="/register">Sign Up</a>
+          {username== null &&
+            <>
+              <a href="/login">Log In</a>
+              <a href="/register">Sign Up</a>
+            </>
+          }
+          {username != null && 
+            <>
+              <a href = "/profile">{username}</a>
+            </>
+          }   
         </div>
       </div>
     );
