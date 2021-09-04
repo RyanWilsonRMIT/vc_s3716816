@@ -31,7 +31,7 @@ class LoginRegister extends React.Component {
       if (accounts[a].username===data.username && accounts[a].password===data.password){
         localStorage.setItem("username",data.username)
         addMessage("good","Logged in! Welcome " + data.username)
-        window.location.assign("/");
+        window.location.assign("/profile");
         return;
       }
     }
@@ -46,11 +46,12 @@ class LoginRegister extends React.Component {
       username:data.username,
       password:data.password, //TODO: HASH PASSWORD ON REGISTRATION
       email: data.email,
+      joinDate: new Date(),
     }
     accounts.push(newAccount)
     localStorage.setItem("accounts",JSON.stringify(accounts))
-
-
+    addMessage("good","You have registed for an account");
+    window.location.assign("/login")
   }
   render() {
     let selected = this.state.selected
