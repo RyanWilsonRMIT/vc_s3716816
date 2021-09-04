@@ -3,6 +3,10 @@ import Searchbar from "../searchbar.js";
 import logo from "./logo.png";
 import "./styles/header.css";
 class Header extends React.Component {
+  logout = () =>{
+    localStorage.removeItem("username")
+    window.location.assign("/")
+  }
   render() {
     let username = localStorage.getItem("username");
     return (
@@ -21,6 +25,7 @@ class Header extends React.Component {
           {username != null && 
             <>
               <a href = "/profile">{username}</a>
+              <a onClick = {this.logout}>Logout</a>
             </>
           }   
         </div>

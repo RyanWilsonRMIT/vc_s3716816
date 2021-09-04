@@ -13,6 +13,9 @@ class Profile extends React.Component {
     //Get profile information(will be serverside later)
     let profiles = JSON.parse(localStorage.getItem("accounts"))
     let username = localStorage.getItem("username")
+    if (username==null){
+      window.location.replace("/") //keep people who are logged out from seeing their own profile... use repace so they cant go back
+    }
     let profile={};
     for (let a in profiles){
       if (profiles[a].username===username){
