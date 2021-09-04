@@ -4,13 +4,15 @@ import Home from './components/home.js'
 import LoginRegister from './components/loginRegister.js'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './App.css';
-
+import {getMessages} from "./components/helper/addMessage.js";
 function App() {
+  let messages=getMessages();
   return (
     <div>
       <Router>
         <Header/>
         <main>
+          {messages}
           <div className="page">
           <Switch>
                 {/* NOTE: The technique below is to pass down the history property to the Login component. */}

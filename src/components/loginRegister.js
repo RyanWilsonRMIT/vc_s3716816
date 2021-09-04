@@ -1,6 +1,7 @@
 import React from "react";
 import "./styles/loginRegister.css";
-import Input from "./input.js";
+import Form from "./form.js";
+import {addMessage} from "./helper/addMessage.js";
 class LoginRegister extends React.Component {
   constructor(){
     super();
@@ -8,6 +9,7 @@ class LoginRegister extends React.Component {
       selected:"register",
     }
   }
+ 
   componentDidMount(){
     this.setState({selected:this.props.selected})
   }
@@ -16,6 +18,42 @@ class LoginRegister extends React.Component {
   }
   swapRegister = () =>{
     this.setState({selected:"register"})
+  }
+  login = (data) =>{
+    console.log("Login Attmepted!")
+    let accounts = [];
+    if (localStorage.getItem("accounts")!=null){
+      accounts = JSON.parse(localStorage.getItem("accounts"));
+    }
+    else{
+      this.setState({"errormsg":"Login Failed"});
+    }
+    for (let a in accounts){
+      if (accounts[a].username===data.username && accounts[a].password===data.password){
+        localStorage.setItem("username",data.username)
+        addMessage("good","Logged in! Welcome " + data.username)
+        window.location.assign("/");
+        return;
+      }
+    }
+    this.setState({"errormsg":"Login Failed"});
+  }
+  register = (data) =>{
+    console.log("Register Attmepted!")
+    let accounts = [];
+    if (localStorage.getItem("accounts")!=null){
+      accounts = JSON.parse(localStorage.getItem("accounts"));
+    }
+    let newAccount={
+      username:data.username,
+      password:data.password, //TODO: HASH PASSWORD ON REGISTRATION
+      email: data.email,
+    }
+    accounts.push(newAccount)
+    localStorage.setItem("accounts",JSON.stringify(accounts))
+    console.log("account saved")
+
+
   }
   render() {
     let selected = this.state.selected
@@ -47,26 +85,51 @@ class LoginRegister extends React.Component {
         msg:"Please enter a valid email address",
       },
     ]
+    let loginInputs=[
+      {
+        label:"Username",
+        id:"username",
+      },
+      {
+        label:"Password",
+        id:"password",
+        validation:passwordValidation,
+        type:"password",
+      },
+    ]
+    let registerInputs=[
+      {
+        label:"Username",
+        id:"username",
+      },
+      {
+        label:"Email",
+        id:"email",
+        validation:emailValidation,
+      },
+      {
+        label:"Password",
+        id:"password",
+        validation:passwordValidation,
+        type:"password",
+      },
+    ]
     return (
       <div className="loginRegister">
         <div className="toggleSwitch">
           <button className={`toggle ${(selected==="login") ? "selected": ""}`} onClick={this.swapLogin}>Log In</button>
           <button className={`toggle ${(selected==="register") ? "selected": ""}`} onClick={this.swapRegister}>Register</button>  
         </div>
+        <p>{this.state.errormsg}</p>
         {selected==="login" &&
           <div className="login">
-            <Input label="Username" id="username"></Input>
-            <Input label="Password" id="password" validation={passwordValidation} type="password"></Input>
-            <input type="submit"></input>
+            <Form inputs={loginInputs} submit={this.login}></Form>
           </div>
 
         }
         {selected==="register" &&
           <div className="register">
-            <Input label="Email" id="email" validation={emailValidation}></Input>
-            <Input label="Username" id="username"></Input>
-            <Input label="Password" id="password" validation={passwordValidation} type="password"></Input>
-            <input type="submit"></input>
+            <Form inputs={registerInputs} submit = {this.register}></Form>
           </div>
         }
       </div>

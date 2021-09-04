@@ -1,0 +1,28 @@
+.good{
+  background-color:green;
+}
+.bad{
+  background-color:red;
+}
+.info{
+  background-color:gray;
+}
+.message{
+  width:800px;
+  display:block;
+  margin:auto;
+  border-radius:5px;
+  padding:10px;
+  margin-bottom:10px;
+}
+.close{
+  float:right;
+  cursor:pointer;
+  user-select:none;
+}
+.close:hover{
+  font-weight: 20px;
+}
+.hidden{
+  display:none;
+}

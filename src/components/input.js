@@ -64,7 +64,12 @@ class Input extends React.Component {
       }
     }
     this.setState({correct:correct,errors:errors})
-    
+    if (correct){
+      this.props.onValidChange({id:this.props.id,data});
+    }
+    else{
+      this.props.onValidChange({id:this.props.id,data:null});
+    }
     
   }
   render() {
