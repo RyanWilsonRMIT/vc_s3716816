@@ -23,7 +23,7 @@ class LoginRegister extends React.Component {
   login = (data) =>{
     let accounts = [];
     if (localStorage.getItem("accounts")!=null){
-      accounts = JSON.parse(localStorage.getItem("accounts"));
+      accounts = JSON.parse(localStorage.getItem("`accounts"));
     }
     else{
       this.setState({"errormsg":"Login Failed"});
