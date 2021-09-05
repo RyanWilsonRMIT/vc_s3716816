@@ -20,7 +20,7 @@ class Post extends React.Component {
     return (
       <div className="newPost page">
         <h1>{this.props.title}</h1>
-        <h4 className = "authordate">{this.props.author} {niceDate}</h4>
+        {this.props.author!=null ? <h4 className = "authordate">{this.props.author} {niceDate}</h4> : ""}
         <p>{this.props.body}</p>
       </div>
     )

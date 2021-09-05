@@ -14,7 +14,7 @@ class Searchbar extends React.Component {
   }
   keyDown = (e)=>{
     if (e.keyCode === 13){
-      window.location.assign("/search?"+e.target.value)
+      window.location.assign("/search?q="+e.target.value)
     }
   }
   render() {

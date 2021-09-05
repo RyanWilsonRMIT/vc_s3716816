@@ -1,9 +1,10 @@
 .footer{
     background-color:white;
     border-top:1px solid black;
-    position:absolute;
+    position:fixed;
     bottom:0;
     width:100%;
+    z-index:1;
 }
 .footer div{
     padding-left:25px;

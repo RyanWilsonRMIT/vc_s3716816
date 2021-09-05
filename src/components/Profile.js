@@ -3,7 +3,8 @@ import "./styles/profile.css";
 import ProfileDetail from "./profileDetail.js";
 import {getProfile, deleteProfile} from "./helper/profile.js"
 import { addMessage } from "./helper/addMessage";
-
+import { getPosts } from "./helper/post";
+import Post from "./post.js"
 class Profile extends React.Component {
   constructor(){
     super();
@@ -11,7 +12,7 @@ class Profile extends React.Component {
       username: null,
       email:null,
       joinDate:new Date(),
-      emailType:"p",
+      posts:[],
     }
   }
   componentDidMount(){
@@ -22,10 +23,16 @@ class Profile extends React.Component {
       username: profile.username,
       email: profile.email,
       joinDate: profile.joinDate,
+      posts:this.getFormattedPosts(),
     })
   }
-  editProfile = ()=>{
-    this.setState({emailType:"input"})
+  getFormattedPosts=()=>{
+    let posts = [];
+    let rawPosts = getPosts(localStorage.getItem("username"));
+    for (let a in rawPosts){
+      posts.push(<Post key={a} title = {rawPosts[a].title} body = {rawPosts[a].body}></Post>)
+    }
+    return posts;
   }
   toggleDelete = () =>{
     if (this.state.delete){
@@ -68,13 +75,16 @@ class Profile extends React.Component {
       )
     }
     return (
-      <div className="page profile">
-        <h1>{this.state.username}</h1>
-        <ProfileDetail field = "email"></ProfileDetail>
-        <ProfileDetail field = "Favourite Color"></ProfileDetail>
-        <p>Has been a member since {niceDate}</p>
-        {deleteSection}
-        
+      <div profile>
+        <div className="page profile">
+          <h1>{this.state.username}</h1>
+          <ProfileDetail field = "email"></ProfileDetail>
+          <ProfileDetail field = "Favourite Color"></ProfileDetail>
+          <p>Has been a member since {niceDate}</p>
+          {deleteSection}
+          
+        </div>
+        {this.state.posts}
       </div>
     )
   }

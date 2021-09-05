@@ -16,15 +16,29 @@ export function getPosts(username){
   let allPosts = JSON.parse(localStorage.getItem("posts"))
   let posts=[]
   for (let a in allPosts){
-    posts.push(allPosts[allPosts.length-1-a])
+    let b = allPosts.length-1-a;
+    if (username!=null){
+      if (username===allPosts[b].username){
+        posts.push(allPosts[b])
+      }
+    }
+    else{
+      posts.push(allPosts[b])
+    }
+    
   }
   return posts;
 }
 export function search(q){
-  let allPosts = JSON.parse(localStorage.getItem("posts"))
-  let posts=[]
+  let allPosts = JSON.parse(localStorage.getItem("posts"));
+  let posts=[];
   for (let a in allPosts){
-    posts.push(allPosts[a])
+    let b = allPosts.length-1-a;
+    if ("title" in allPosts[b]){
+      if (allPosts[b].title.toLowerCase().match(q)){
+        posts.push(allPosts[b])
+      }
+    }
   }
   return posts;
 }

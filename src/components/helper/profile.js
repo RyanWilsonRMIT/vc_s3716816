@@ -22,9 +22,7 @@ export function getProfile(username){
 export function deleteProfile(username){
   let profiles = JSON.parse(localStorage.getItem("accounts"))
   for (let a=profiles.length-1; a>=0;a--){
-    console.log(profiles[a].username + " " + username)
     if (profiles[a].username===username){
-      console.log("Found a match")
       profiles.splice(a,1)
       localStorage.setItem("accounts",JSON.stringify(profiles))
       return true
