@@ -2,6 +2,7 @@ import React from "react";
 import "./styles/loginRegister.css";
 import Form from "./form.js";
 import {addMessage} from "./helper/addMessage.js";
+import validation from "./helper/validations.js"
 class LoginRegister extends React.Component {
   constructor(){
     super();
@@ -55,43 +56,14 @@ class LoginRegister extends React.Component {
   }
   render() {
     let selected = this.state.selected
-    let passwordValidation=[
-      {
-        rule: new RegExp("^.{6,}$"),
-        msg: "Your password must have at least 6 characters",
-      },
-      {
-        rule: new RegExp("^.*[a-z].*$"),
-        msg: "Your password must have at least 1 lowecase character",
-      },
-      {
-        rule: new RegExp("^.*[A-Z].*$"),
-        msg: "Your password must have at least 1 uppercase character",
-      },
-      {
-        rule: new RegExp("^.*[0-9].*$"),
-        msg: "Your password must have at least 1 number",
-      },
-      {
-        rule: new RegExp(/[-!$%^&*()_+|~=`{}[\]:";'<>?,@#./]/),
-        msg: "Your password must have at least 1 symbol",
-      },
-    ]
-    let emailValidation = [
-      {
-        rule:new RegExp(/^[a-zA-Z][a-zA-Z0-9.]*@[a-zA-Z]*\.([.a-zA-Z]*)*[a-zA-Z]$/),
-        msg:"Please enter a valid email address",
-      },
-    ]
     let loginInputs=[
       {
         label:"Username",
         id:"username",
       },
       {
-        label:"Password",
+        label:"Password",//We dont need to validate password for the login page
         id:"password",
-        validation:passwordValidation,
         type:"password",
       },
     ]
@@ -103,12 +75,12 @@ class LoginRegister extends React.Component {
       {
         label:"Email",
         id:"email",
-        validation:emailValidation,
+        validation:validation.email,
       },
       {
         label:"Password",
         id:"password",
-        validation:passwordValidation,
+        validation:validation.password,
         type:"password",
       },
     ]

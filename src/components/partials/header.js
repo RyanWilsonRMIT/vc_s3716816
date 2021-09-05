@@ -25,7 +25,7 @@ class Header extends React.Component {
           {username != null && 
             <>
               <a href = "/profile">{username}</a>
-              <a onClick = {this.logout}>Logout</a>
+              <a onClick = {this.logout} href="/logout">Logout</a>
             </>
           }   
         </div>

@@ -11,10 +11,12 @@ class Input extends React.Component {
       correct:false,
       type:null,
       errors:null,
+      defaultValue:"",
+      showErrors:true,
     }
   }
   componentDidMount(){
-    let validation, type;
+    let validation, type, defaultValue,showErrors=true;
     if (this.props.validation){
       validation= this.props.validation;
     }
@@ -32,13 +34,24 @@ class Input extends React.Component {
     else{
       type="text";
     }
+    if (this.props.defaultValue){
+      defaultValue=this.props.defaultValue;
+    }
+    else{
+      defaultValue="";
+    }
+    if (this.props.showErrors===false){
+      showErrors=false;
+    }
     this.setState({
       label: this.props.label,
       id: this.props.id,
-      validation: validation,
-      type:type,
+      validation,
+      type,
       errors:[],
       correct:false,
+      defaultValue,
+      showErrors,
     })
   }
   focused = () =>{
@@ -77,10 +90,10 @@ class Input extends React.Component {
       }
     }
     return (
-      <div>
-        <p>{this.props.label + ": "}</p>
-        <input className={`input ${this.state.correct ? " correct" : " incorrect"}`} id = {this.props.id} placeholder = {this.props.label} onKeyUp={this.keyUp} type={this.state.type}></input>
-        {errorBody}
+      <div className="input">
+        {this.state.label!=="" ? <p>{this.props.label + ": "}</p> : "" }
+        <input defaultValue = {this.state.defaultValue} className={`input ${this.state.correct ? " correct" : " incorrect"}`} id = {this.props.id} placeholder = {this.props.label} onKeyUp={this.keyUp} type={this.state.type}></input>
+        {this.state.showErrors? errorBody:""}
       </div>
     );
   }
