@@ -14,7 +14,6 @@ function App() {
         <Header/>
         <main>
           {messages}
-          <div className="page">
           <Switch>
                 {/* NOTE: The technique below is to pass down the history property to the Login component. */}
                 <Route path="/login" render={props => (
@@ -32,7 +31,6 @@ function App() {
                    />
                 </Route>
               </Switch>
-          </div>
         </main>
         <Footer />
       </Router>

@@ -1,0 +1,11 @@
+.newPost{
+}
+.titleInput, .bodyInput, button{
+  margin:5px;
+}
+.bodyInput{
+  resize:none;
+  display:block;
+  height:200px;
+  width:90%;
+}

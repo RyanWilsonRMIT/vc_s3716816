@@ -21,7 +21,6 @@ export function getProfile(username){
 }
 export function deleteProfile(username){
   let profiles = JSON.parse(localStorage.getItem("accounts"))
-  let profile={};
   for (let a=profiles.length-1; a>=0;a--){
     console.log(profiles[a].username + " " + username)
     if (profiles[a].username===username){

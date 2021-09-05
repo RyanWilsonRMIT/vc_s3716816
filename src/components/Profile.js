@@ -68,7 +68,7 @@ class Profile extends React.Component {
       )
     }
     return (
-      <div className="profile">
+      <div className="page profile">
         <h1>{this.state.username}</h1>
         <ProfileDetail field = "email"></ProfileDetail>
         <ProfileDetail field = "Favourite Color"></ProfileDetail>
