@@ -86,7 +86,7 @@ class Input extends React.Component {
     if (!this.state.correct){
       let errors = this.state.errors;
       for (var error in errors){
-        errorBody.push(<p>{errors[error]}</p>)
+        errorBody.push(<p key={error}>{errors[error]}</p>)
       }
     }
     return (

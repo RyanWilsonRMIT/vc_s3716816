@@ -74,7 +74,7 @@ class ProfileDetail extends React.Component {
       return (
         <div className="profileDetail">
           <p>{this.props.field}:</p>
-          <p>{this.state.detail}</p>
+           <p>{(this.state.detail!== null && this.state.detail!=="") ? this.state.detail : "None" }</p>
           {this.state.editable? <button onClick={this.edit}>Edit</button> : ""}
         </div>
       )

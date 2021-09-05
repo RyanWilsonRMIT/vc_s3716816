@@ -11,9 +11,6 @@ export function updateField(username, field, data){
 }
 export function getProfile(username){
   let profiles = JSON.parse(localStorage.getItem("accounts"))
-  if (username==null){
-    window.location.replace("/") //keep people who are logged out from seeing their own profile... use repace so they cant go back
-  }
   let profile={};
   for (let a in profiles){
     if (profiles[a].username===username){
@@ -21,4 +18,18 @@ export function getProfile(username){
     }
   }
   return profile;
+}
+export function deleteProfile(username){
+  let profiles = JSON.parse(localStorage.getItem("accounts"))
+  let profile={};
+  for (let a=profiles.length-1; a>=0;a--){
+    console.log(profiles[a].username + " " + username)
+    if (profiles[a].username===username){
+      console.log("Found a match")
+      profiles.splice(a,1)
+      localStorage.setItem("accounts",JSON.stringify(profiles))
+      return true
+    }
+  }
+  return false
 }
