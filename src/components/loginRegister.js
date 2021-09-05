@@ -27,12 +27,15 @@ class LoginRegister extends React.Component {
   login = (data) =>{
     let accounts = [];
     if (localStorage.getItem("accounts")!=null){
-      accounts = JSON.parse(localStorage.getItem("`accounts"));   //this just allows for the program to not crash if "accounts" is not allready a key
+      accounts = JSON.parse(localStorage.getItem("accounts"));   //this just allows for the program to not crash if "accounts" is not allready a key
     }
     else{
       this.setState({"errormsg":"Login Failed"});   //if no accounts exist, then we know that they havent logged in
     }
     for (let a in accounts){
+      console.log("----")
+      console.log(accounts[a].username + " " +data.username)
+      console.log(accounts[a].password + " " +data.password)
       if (accounts[a].username===data.username && accounts[a].password===data.password){//if the username, and the password are correct
         localStorage.setItem("username",data.username) //Then set the username key in localStorage
         addMessage("good","Logged in! Welcome " + data.username) //setup a notification
