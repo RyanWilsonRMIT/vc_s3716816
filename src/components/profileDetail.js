@@ -10,7 +10,7 @@ class ProfileDetail extends React.Component {
       detail: "",
       editMode:false,
       editable:true,
-      valid:true,
+      valid:false,
       data:"",
     }
   }
@@ -29,6 +29,7 @@ class ProfileDetail extends React.Component {
     if (this.state.editable){
       this.setState({
         editMode:true,
+        valid:false,
       })
     }
   }
