@@ -1,3 +1,6 @@
+//The helper file with the different regex rules that we use
+//validations are stored in arrays under a key of the appropriate name
+//EG: `validation.password` is an array of RegExp rules (and plaintext definitions)
 const validation = {
   password:[
     {

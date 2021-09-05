@@ -13,6 +13,7 @@ class Home extends React.Component {
   getPosts = () => {
     let posts = [];
     let rawPosts = getPostsFromServer();
+    //we are creating an array of all the posts, which will get dispalyed in the render function
     for (let a in rawPosts){
       posts.push(<Post key={a} title = {rawPosts[a].title} body = {rawPosts[a].body} author = {rawPosts[a].username} date = {rawPosts[a].date}></Post>)
     }
@@ -26,7 +27,9 @@ class Home extends React.Component {
           <h1>Home</h1>
           <p>Welcome to the forum, feel free to make a post!</p>
         </div>
+        {/* If the user is logged in, then allow them to create a post */}
         {localStorage.getItem("username")!=null ? <NewPost reload={this.getPosts}></NewPost> : ""}
+        {/*But regardless of that, allow the user to see existing posts */}
         {this.state.posts}
       </div>
     );

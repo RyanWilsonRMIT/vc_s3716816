@@ -3,17 +3,20 @@ import "./styles/profileDetail.css";
 import Input from "./input.js"
 import validation from "./helper/validations.js";
 import {getProfile, updateField} from "./helper/profile.js"
+//This is a row of the users profile that contains some information about the user
+//as well as a mechanism to update that particular piece of information.
 class ProfileDetail extends React.Component {
   constructor(){
     super();
     this.state={
       detail: "",
-      editMode:false,
-      editable:true,
-      valid:false,
+      editMode:false, //refers to weather or not the field is currently editable
+      editable:true, //refers to weather we want something to be editable at all
+      valid:false,  //Is the change valid (default is false, because then you aren't changing the value)
       data:"",
     }
   }
+  //once the component mounts we can fetch the accurate details from the "server"
   componentDidMount(){
     //Get profile information(will be serverside later
     let profile=getProfile(localStorage.getItem("username"))
@@ -25,6 +28,7 @@ class ProfileDetail extends React.Component {
       )
     }
   }
+  //when a user clicks the edit button we will check if it is editable, and if it is then we will tell the state to allow editing
   edit = ()=>{
     if (this.state.editable){
       this.setState({
@@ -33,11 +37,13 @@ class ProfileDetail extends React.Component {
       })
     }
   }
+  //if they click cancel, then we want to go back to the non-editing mode without makin changes to the actual value
   cancel = () =>{
     this.setState({
       editMode:false,
     })
   }
+  //if they click save, then gather relevent information and send it to the helper function that will update it on the "database"(localstorage)
   save = () => {
     let username = localStorage.getItem("username");
     let field = this.props.field;
@@ -48,6 +54,7 @@ class ProfileDetail extends React.Component {
       }
     }
   }
+  //Keeps track of changes made to the input
   onChange = (data) => {
     if (data.data!=null){
       this.setState({
@@ -62,6 +69,7 @@ class ProfileDetail extends React.Component {
     }
   }
   render() {
+    //Two display options, one that is an Input, and one that is just a P
     if (this.state.editMode){
       return (
         <div className="profileDetail">

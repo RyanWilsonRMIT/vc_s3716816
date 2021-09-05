@@ -5,6 +5,7 @@ import {getProfile, deleteProfile} from "./helper/profile.js"
 import { addMessage } from "./helper/addMessage";
 import { getPosts } from "./helper/post";
 import Post from "./post.js"
+//This element allows the user to view and update their details
 class Profile extends React.Component {
   constructor(){
     super();
@@ -26,6 +27,7 @@ class Profile extends React.Component {
       posts:this.getFormattedPosts(),
     })
   }
+  //displayes all of the users post's at the bottom of their profile
   getFormattedPosts=()=>{
     let posts = [];
     let rawPosts = getPosts(localStorage.getItem("username"));
@@ -34,6 +36,7 @@ class Profile extends React.Component {
     }
     return posts;
   }
+  //Toggles the confirm delete dialogue
   toggleDelete = () =>{
     if (this.state.delete){
       this.setState({delete:false})
@@ -43,6 +46,7 @@ class Profile extends React.Component {
     }
     
   }
+  //deletes the user (mainly by calling the helper function)
   confirmDelete = () =>{
     deleteProfile(localStorage.getItem("username"))
     localStorage.removeItem("username")
@@ -50,6 +54,7 @@ class Profile extends React.Component {
     window.location.replace("/")
   }
   render() {
+    //Generate a nice view for the date of creation
     let niceDate = "";
     let date = this.state.joinDate
     niceDate += date.getDate()
@@ -58,6 +63,7 @@ class Profile extends React.Component {
     niceDate += "-"
     niceDate += date.getFullYear()
     let deleteSection = null;
+    //If delete has been toggled then create the confirmation
     if (this.state.delete){
       deleteSection = (
         <div className="deleteSection">
@@ -67,7 +73,7 @@ class Profile extends React.Component {
         </div>
       )
     }
-    else{
+    else{ //Otherwise, create the basic option
       deleteSection = (
         <div className="deleteSection">
           <button onClick = {this.toggleDelete}>Delete Profile</button>
@@ -78,10 +84,10 @@ class Profile extends React.Component {
       <div profile>
         <div className="page profile">
           <h1>{this.state.username}</h1>
-          <ProfileDetail field = "email"></ProfileDetail>
+          <ProfileDetail field = "email"></ProfileDetail> {/* this is really cool, all you need to do to add another field to the user, is to create another ProfileDetail object*/}
           <ProfileDetail field = "Favourite Color"></ProfileDetail>
           <p>Has been a member since {niceDate}</p>
-          {deleteSection}
+          {deleteSection} {/*displays the (previously decided) delete section*/}
           
         </div>
         {this.state.posts}
