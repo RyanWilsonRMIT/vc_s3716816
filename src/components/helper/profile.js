@@ -33,3 +33,11 @@ export function deleteProfile(username){
   }
   return false
 }
+export function newProfile(newAccount){
+  let accounts = [];
+  if (localStorage.getItem("accounts")!=null){
+    accounts = JSON.parse(localStorage.getItem("accounts"));
+  }
+  accounts.push(newAccount)
+  localStorage.setItem("accounts",JSON.stringify(accounts))
+}

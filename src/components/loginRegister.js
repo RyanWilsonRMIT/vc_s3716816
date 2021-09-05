@@ -3,6 +3,7 @@ import "./styles/loginRegister.css";
 import Form from "./form.js";
 import {addMessage} from "./helper/addMessage.js";
 import validation from "./helper/validations.js"
+import {newProfile} from "./helper/profile.js"
 class LoginRegister extends React.Component {
   constructor(){
     super();
@@ -39,18 +40,13 @@ class LoginRegister extends React.Component {
     this.setState({"errormsg":"Login Failed"});
   }
   register = (data) =>{
-    let accounts = [];
-    if (localStorage.getItem("accounts")!=null){
-      accounts = JSON.parse(localStorage.getItem("accounts"));
-    }
     let newAccount={
       username:data.username,
       password:data.password, //TODO: HASH PASSWORD ON REGISTRATION
       email: data.email,
       joinDate: new Date(),
     }
-    accounts.push(newAccount)
-    localStorage.setItem("accounts",JSON.stringify(accounts))
+    newProfile(newAccount); 
     addMessage("good","You have registed for an account");
     window.location.assign("/login")
   }
