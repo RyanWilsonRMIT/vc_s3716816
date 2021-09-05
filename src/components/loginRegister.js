@@ -81,7 +81,7 @@ class LoginRegister extends React.Component {
       },
     ]
     return (
-      <div className="loginRegister">
+      <div className="loginRegister page">
         <div className="toggleSwitch">
           <button className={`toggle ${(selected==="login") ? "selected": ""}`} onClick={this.swapLogin}>Log In</button>
           <button className={`toggle ${(selected==="register") ? "selected": ""}`} onClick={this.swapRegister}>Register</button>  

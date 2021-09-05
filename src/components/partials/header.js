@@ -15,7 +15,7 @@ class Header extends React.Component {
           <a href = "/">
             <img src={logo} alt="Vibe Check"></img>
           </a>
-          <Searchbar></Searchbar>
+          <Searchbar q={this.props.q}></Searchbar>
           {username== null &&
             <>
               <a href="/login">Log In</a>

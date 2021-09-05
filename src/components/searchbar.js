@@ -22,7 +22,7 @@ class Searchbar extends React.Component {
       <div className={
         `searchbar ${this.state.active ? " active" : ""}`
       }>
-        <input type="text" onFocus={this.focused} onBlur={this.blured} onKeyDown = {this.keyDown}></input>
+        <input type="text" onFocus={this.focused} onBlur={this.blured} onKeyDown = {this.keyDown} defaultValue = {this.props.q} placeholder="Search...  "></input>
         
       </div>
     );

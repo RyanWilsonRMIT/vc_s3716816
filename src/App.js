@@ -15,7 +15,7 @@ function App() {
   let messages=getMessages();
   return (
     <div>
-      <Header/>
+      <Header q={q}/>
       <main>
         {messages}
         <Switch>

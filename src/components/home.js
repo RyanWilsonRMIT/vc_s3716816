@@ -26,7 +26,7 @@ class Home extends React.Component {
           <h1>Home</h1>
           <p>Welcome to the forum, feel free to make a post!</p>
         </div>
-        <NewPost reload={this.getPosts}></NewPost>
+        {localStorage.getItem("username")!=null ? <NewPost reload={this.getPosts}></NewPost> : ""}
         {this.state.posts}
       </div>
     );
