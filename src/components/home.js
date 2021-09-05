@@ -16,13 +16,10 @@ class Home extends React.Component {
     for (let a in rawPosts){
       posts.push(<Post key={a} title = {rawPosts[a].title} body = {rawPosts[a].body} author = {rawPosts[a].username} date = {rawPosts[a].date}></Post>)
     }
-    console.log(posts)
     this.setState({posts:posts})
-    console.log(this.state)
     return posts;
   }
   render() {
-    console.log(this.state)
     return (
       <div className="home">
         <div className="page">
